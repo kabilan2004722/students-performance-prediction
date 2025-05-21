@@ -1,0 +1,49 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Prediction</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <script>
+        function generateStudentFields() {
+            let numStudents = document.getElementById("num_students").value;
+            let container = document.getElementById("student_details");
+            container.innerHTML = "";
+            
+            for (let i = 0; i < numStudents; i++) {
+                container.innerHTML += `
+                    <div class="student-entry">
+                        <h3>Student ${i + 1}</h3>
+                        <label>Student ID:</label>
+                        <input type="text" name="student_id_${i}" required>
+                        <label>Name:</label>
+                        <input type="text" name="name_${i}" required>
+                        <label>Subject:</label>
+                        <input type="text" name="subject_${i}" required>
+                        <label>CIA 1:</label>
+                        <input type="number" name="cia1_${i}" min="0" max="30" required>
+                        <label>CIA 2:</label>
+                        <input type="number" name="cia2_${i}" min="0" max="30" required>
+                        <label>Model Exam:</label>
+                        <input type="number" name="model_exam_${i}" min="0" max="50" required>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Student Details</h2>
+        <form action="/predict" method="post">
+            <label for="num_students">Number of Students:</label>
+            <input type="number" id="num_students" name="num_students" min="1" required>
+            <button type="button" onclick="generateStudentFields()">Generate Fields</button>
+            <div id="student_details"></div>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+</body>
+</html>

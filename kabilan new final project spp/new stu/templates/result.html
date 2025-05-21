@@ -1,0 +1,45 @@
+<!-- result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Predicted Student Performance</h2>
+        <table>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>CIA 1</th>
+                <th>CIA 2</th>
+                <th>Model Exam</th>
+                <th>Predicted Mark</th>
+            </tr>
+            {% for student in students %}
+            <tr>
+                <td>{{ student['student_id'] }}</td>
+                <td>{{ student['name'] }}</td>
+                <td>{{ student['subject'] }}</td>
+                <td>{{ student['cia1'] }}</td>
+                <td>{{ student['cia2'] }}</td>
+                <td>{{ student['model_exam'] }}</td>
+                <td>{{ student['predicted_mark'] | round(2) }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <h3>Performance Distribution</h3>
+        <div class="pie-chart">
+            <img src="{{ pie_chart_url }}" alt="Performance Distribution">
+        </div>
+        
+        <a href="/view">View All Records</a>
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>

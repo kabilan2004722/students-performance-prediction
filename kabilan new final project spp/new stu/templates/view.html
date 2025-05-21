@@ -1,0 +1,43 @@
+<!-- view.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Records</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>All Student Records</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>CIA 1</th>
+                <th>CIA 2</th>
+                <th>Model Exam</th>
+                <th>Predicted Mark</th>
+                <th>Action</th>
+            </tr>
+            {% for student in students %}
+            <tr>
+                <td>{{ student[0] }}</td>
+                <td>{{ student[1] }}</td>
+                <td>{{ student[2] }}</td>
+                <td>{{ student[3] }}</td>
+                <td>{{ student[4] }}</td>
+                <td>{{ student[5] }}</td>
+                <td>{{ student[6] }}</td>
+                <td>{{ student[7] | round(2) }}</td>
+                <td><a href="/delete/{{ student[0] }}" class="delete-btn">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/download" class="download-btn">Download Records</a>
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>
